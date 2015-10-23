@@ -1,0 +1,89 @@
+set smartindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+
+let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+if &term == "screen"
+    set t_ts=^[k
+    set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm"
+    set title
+endif
+
+syntax on
+filetype on
+au BufNewFile,BufRead *.och set filetype=php
+au FileType html setl sw=2 sts=2 et
+au FileType jade setl sw=2 sts=2 et
+au FileType javascript setl sw=2 sts=2 et
+
+
+map <F5> <Esc>:EnableFastPHPFolds<Cr> 
+map <F6> <Esc>:EnablePHPFolds<Cr> 
+map <F7> <Esc>:DisablePHPFolds<Cr> 
+
+
+filetype off
+call pathogen#incubate()
+call pathogen#helptags()
+
+"set foldmethod=indent
+set foldmethod=syntax
+set foldlevelstart=1
+
+let javascript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
+
+autocmd VimEnter * execute "normal 'zM'"
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS 
+
+" Splitting Windows
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+map <leader>td <Plug>TaskList
+
+map <leader>g :GundoToggle<CR>
+
+
+syntax on                           " syntax highlighing
+filetype on                          " try to detect filetypes
+filetype plugin indent on    " enable loading indent file for filetype
+let g:pyflakes_use_quickfix = 0
+
+" PEP8
+let g:pep8_map='<leader>8'
+
+" Code Completion
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+" NERD Tree
+map <leader>n :NERDTreeToggle<CR>
+
+" RopeVim - GoToDef, Rename
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+
+
+" Ack - Search Tool -> More extended
+nmap <leader>a <Esc>:Ack!
+
+set statusline=%{fugitive#statusline()}
+
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
+
