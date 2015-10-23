@@ -1,5 +1,8 @@
 # myVim
-<<<<<<< HEAD
-My VIM configuration
-=======
->>>>>>> dd922813cca0761fa44fa949b2405a24b0633122
+### ***My VIM configuration***
+I use vim in a daily basis. This repo consists of my vim configuration plugins and vimrc. Further development is on.
+
+### ***Installation***
+
+`./setup.sh` in cloned repo directory and you're good to go.
+
